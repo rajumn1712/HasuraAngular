@@ -1,7 +1,8 @@
-import {Component,Inject} from '@angular/core';
+import {Component,Inject, OnInit} from '@angular/core';
 
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from '../auth-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,12 +16,16 @@ import { AuthService } from '../auth-service';
   <ng-template #loggedOut>
     <button (click)="auth.login()">Log in</button>
   </ng-template>
-  <div *ngIf="auth.isAuthenticated$">
-  <app-add-item></app-add-item>
-  </div>
   `
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
 
-    constructor(@Inject(DOCUMENT) public document: Document,public auth:AuthService){}
+    constructor(@Inject(DOCUMENT) public document: Document,public auth:AuthService,private router:Router){
+      if(auth.isAuthenticated()){
+        router.navigate(['/add-item']);
+      }
+    }
+    ngOnInit(){
+
+    }
 }

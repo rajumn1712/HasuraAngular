@@ -16,9 +16,9 @@ export class GraphQlModule {
 constructor(apollo:Apollo,httpLink:HttpLink){
   const uri = 'https://customhasura-backend.herokuapp.com/v1/graphql';
   const authHeader = new HttpHeaders()
-  .set('X-Hasura-Access-Key', 'something_secret')
+  .set('x-hasura-access-key', 'mustsecret')
     .set('Content-Type', 'application/json')
-    .set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
+    .set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
     .set('X-Hasura-Role', 'user')
     .set('X-Hasura-User-Id', JSON.stringify(localStorage.getItem('user_id')));
 
