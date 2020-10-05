@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const GetQuery = gql`
 query PostsGetQuery{
-    hasurawithangular{
+    table_angular{
         id
         text
         is_completed
@@ -11,15 +11,20 @@ query PostsGetQuery{
 `;
 
 export const AddMutation = gql`
-mutation insert_hasurawithangular($objects:[hasurawithangular_insert_input!]!){
-    insert_hasurawithangular(objects:$objects){
-        returning{
-            id
-            text
-            is_completed
-            user
-        }
+mutation myMutation($objects: [table_angular_insert_input!] = {}) {
+  insert_table_angular(objects: $objects) {
+    returning {
+      description
+      id
+      title
+      user {
+        id
+        name
+      }
     }
+  }
 }
+
+  
 `;
 

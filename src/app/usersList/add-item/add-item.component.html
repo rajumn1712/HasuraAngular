@@ -12,7 +12,8 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-lg">Type here</span>
           </div>
-          <input type="text" class="form-control" name="someString" [(ngModel)]="someString" [value]="someString"  aria-describedby="inputGroup-sizing-lg">
+          <input type="text" class="form-control" name="title" [(ngModel)]="title" [value]="title"  aria-describedby="inputGroup-sizing-lg">
+          <input type="text" class="form-control" name="description" [(ngModel)]="description" [value]="description"  aria-describedby="inputGroup-sizing-lg">
           <button type="button" (click)="addItemInDb()">Insert</button>
         </div>
     </div>

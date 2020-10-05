@@ -10,7 +10,9 @@ import * as Query from '../../queries';
     styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-    someString = '';
+
+    title='';
+    description = '';
 
     constructor(private apollo: Apollo, private auth: AuthService, private router: Router) {
         if (!auth.isAuthenticated()) {
@@ -23,21 +25,21 @@ export class AddItemComponent implements OnInit {
     }
 
     addItemInDb() {
-        this.apollo.mutate<any>({
-            mutation: Query.AddMutation,
-            variables: {
-                'objects': [
-                    {
-                        'text': this.someString,
-                        'user': localStorage.getItem('user_id')
-                    }
-                ]
-            }
-        }).subscribe(({ data }) => {
-            console.log(data);
-            location.reload();
-        }, (error) => {
-            console.log(`An error occurred ${error}`);
-        })
+        this.apollo.mutate({
+      mutation: Query.AddMutation,
+      variables:{
+          objects:[
+            {
+                'decsription': this.description,
+                'title':this.title,
+                'userid': '20ad2eaa-1538-4a58-be6a-7ff00c2d798a'
+              }
+          ]
+      }   
+    }).subscribe(({ data }) => {
+      location.reload();
+    }, (error) => {
+      console.log('Could not add due to ' + error);
+    });
     }
 }

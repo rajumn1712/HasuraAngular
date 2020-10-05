@@ -14,11 +14,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 })
 export class GraphQlModule { 
 constructor(apollo:Apollo,httpLink:HttpLink){
-  const uri = 'https://customhasura-backend.herokuapp.com/v1/graphql';
+  const uri = 'https://hasura-withangular.herokuapp.com/v1/graphql';
   const authHeader = new HttpHeaders()
-  .set('x-hasura-access-key', 'mustsecret')
+  .set('x-hasura-access-key', 'secretkey')
     .set('Content-Type', 'application/json')
-    .set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+    .set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
     .set('X-Hasura-Role', 'user')
     .set('X-Hasura-User-Id', JSON.stringify(localStorage.getItem('user_id')));
 
